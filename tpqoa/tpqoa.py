@@ -237,10 +237,13 @@ class tpqoa(object):
             end = self.transform_datetime(end)
             data = self.retrieve_data(instrument, start, end,
                                       granularity, price)
-        if localize:
+        if not data.empty and localize:
             data.index = data.index.tz_localize(None)
 
-        return data[['o', 'h', 'l', 'c', 'volume', 'complete']]
+        if data.empty:
+            return data
+        else:
+            data[['o', 'h', 'l', 'c', 'volume', 'complete']]
 
     def create_order(self, instrument, units, price=None, sl_distance=None,
                      tsl_distance=None, tp_price=None, comment=None,
