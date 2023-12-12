@@ -243,7 +243,7 @@ class tpqoa(object):
         if data.empty:
             return data
         else:
-            data[['o', 'h', 'l', 'c', 'volume', 'complete']]
+            return data[['o', 'h', 'l', 'c', 'volume', 'complete']]
 
     def create_order(self, instrument, units, price=None, sl_distance=None,
                      tsl_distance=None, tp_price=None, comment=None,
